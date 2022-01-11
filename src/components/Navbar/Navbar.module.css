@@ -1,0 +1,33 @@
+.Navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.Navbar a {
+  display: block;
+  width: 98px;
+  border: solid 1px #d6d6d6;
+  color:#606060;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-align: center;
+  text-decoration: none;
+}
+.Navbar a:first-child {
+  border-radius: 2px;
+  border-right: 0;
+}
+
+.Navbar a.active {
+  color: #1797ff;
+  border-color: #1797ff;
+}
