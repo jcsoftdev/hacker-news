@@ -24,6 +24,7 @@ const Select = ({onSelect}: Props) => {
 	const [items, setItems] = useState(theItems)
 	const [search, setSearch] = useState('')
 	const [isActiveItems, setIsActiveItems] = useState(false)
+	const [placeholder, setPlaceholder] = useState('Select your news')
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		
@@ -34,8 +35,11 @@ const Select = ({onSelect}: Props) => {
 	const openItems = () => setIsActiveItems(true)
 
 	const handleSelect = (item: ItemI) => {
-		onSelect(item)
+		setPlaceholder(item.value)
+		setSearch('')
 		setIsActiveItems(false)
+		setItems([])
+		onSelect(item)
 	}
 
 	useEffect(() => {
@@ -47,8 +51,10 @@ const Select = ({onSelect}: Props) => {
 	}, [items])
 
 	const searchItem = (items: ItemI[], value: string) => {
-		const newItems = items.filter(item => item.value.toLowerCase().includes(value.toLowerCase()))
-		setItems(newItems)
+		if (value.length>0) {
+			const newItems = items.filter(item => item.value.toLowerCase().includes(value.toLowerCase()))
+			setItems(newItems)
+		}
 	}
 
 	return (
@@ -56,7 +62,7 @@ const Select = ({onSelect}: Props) => {
 			<div className={styles.inputContainer}>
 				<input
 					type="text"
-					placeholder="Select your news"
+					placeholder={placeholder}
 					value={search}
 					onChange={handleChange}
 				/>
