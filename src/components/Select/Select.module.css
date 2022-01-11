@@ -1,0 +1,77 @@
+.Select {
+  width: 240px;
+  position: relative;
+}
+
+.down {
+  width: 10px;
+  height: 7px;
+  position: relative;
+  box-sizing: border-box;
+}
+.down span {
+  border-radius: 2px;
+  box-sizing: border-box;
+  width: 8.6px;
+  bottom: 2px;
+  border-bottom: 2px solid #2e2e2e;
+  position: absolute;
+  cursor: pointer;
+}
+.down span:first-child {
+  transform: rotate(45deg);
+  left: -1.75px;
+  
+}
+.down span:last-child {
+  transform: rotate(-45deg) ;
+  right: -1.75px;
+}
+
+.inputContainer {
+  border: 1px solid #2e2e2e;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 12px;
+  position: relative;
+  width: 100%;
+}
+
+.inputContainer input {
+  height: 32px;
+  font-size: 14px;
+  border: 0;
+  margin-right: 19px;
+  outline: none;
+  width: 100%;
+}
+
+.Items {
+  position: absolute;
+  top: calc(32px + 1rem);
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.Items.active {
+  height: 139px;
+}
+
+.Item {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.Item:hover {
+  background-color: #f1e1ff;
+}

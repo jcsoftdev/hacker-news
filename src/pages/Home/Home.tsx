@@ -1,9 +1,8 @@
-import Header from '../../components/Header/Header'
-import Navbar from '../../components/Navbar'
+
+import Select from '../../components/Select'
 const Home = () => {
-	return <div>
-    
-		Home
+	return <div className='container'>
+		<Select onSelect={(e)=>console.log(e)}/>
 	</div>
 }
 
