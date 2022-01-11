@@ -1,0 +1,37 @@
+.Card {
+  display: grid;
+  grid-template-columns: 1fr 68px;
+  border: 1px solid #979797;
+  opacity: 0.8;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.CardContent {
+  padding: 28px 22px 22px 26px;
+
+}
+
+.Card .Liked {
+  background-color: #fcfcfc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Time {
+  font-family: Roboto;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #767676;
+}
+
+.Title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  letter-spacing: 0.25px;
+  color: #6b6b6b
+}
