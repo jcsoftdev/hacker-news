@@ -10,7 +10,7 @@ const useFetchNews = (search: string, page=0) => {
 		const fetchData = async () => {
 			setIsLoading(true)
 			try {
-				const res = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${search}&page=${page}`)
+				const res = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=${search}&page=${page}&hitsPerPage=8`)
 				const data: News = await res.json()
 				setResponse(data)
 			} catch (error) {
