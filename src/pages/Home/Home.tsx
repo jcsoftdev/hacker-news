@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import CardContainer from '../../components/CardContainer'
 import Pagination from '../../components/Pagination'
 import Select from '../../components/Select'
+import { NUMBER_ITEMS_PER_PAGE } from '../../constants/storage'
 import { FavContext } from '../../context/fav/FavsContext'
 import { Fav } from '../../context/fav/favsReducer'
 import useFetchNews from '../../hooks/useFetchNews'
@@ -11,7 +12,7 @@ const Home = () => {
 	const { favorites, page, setPage } = useContext(FavContext)
 	const [selected, setSelected] = useState('vue')
 	const { response, error, isLoading } = useFetchNews(selected, page)
-	const [news,  setNews] = useState<Fav[]>([])
+	const [news,  setNews] = useState<Fav[]>(new Array(NUMBER_ITEMS_PER_PAGE))
 
 	useEffect(() => {
 		if (response) {
@@ -50,11 +51,10 @@ const Home = () => {
 		<>
 			<div className="container">
 				<Select onSelect={(e) => setSelected(e.value)} />
-				{isLoading && <div>Loading...</div>}
 				{error && <div>Error</div>}
-				{response && !isLoading && (
-					<CardContainer favs={news} />
-				)}
+				
+				<CardContainer favs={news} isLoading={isLoading} />
+				
 			</div>
 
 			<Pagination onChangePage={(e) => setPage(e)} page={page} />

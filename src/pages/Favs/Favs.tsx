@@ -6,7 +6,7 @@ const Favs = () => {
 	const {favorites} = useContext(FavContext)
 	return (
 		<div className={'container'}>
-			<CardContainer favs={favorites}/>
+			<CardContainer favs={favorites} isLoading={false}/>
 		</div>
 	)
 }

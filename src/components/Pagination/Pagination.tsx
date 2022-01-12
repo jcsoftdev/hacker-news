@@ -11,7 +11,7 @@ const Pagination = ({
 	page
 }: PaginationI) => {
 	const [currentPage, setCurrentPage] = useState(page)
-	const [pages] = useState(1)
+	const [extraPages] = useState(6)
 
 	const handlePage = (n: number) => {
 		setCurrentPage((cp) => cp + n)
@@ -29,7 +29,7 @@ const Pagination = ({
             Prev
 					</button>
 				)}
-				{Array.from({ length: pages }, (v, i) => currentPage + i - pages).map(
+				{Array.from({ length: extraPages }, (v, i) => currentPage + i - extraPages).map(
 					(page) =>
 						page > 0 && (
 							<button
@@ -44,7 +44,7 @@ const Pagination = ({
 				<button className={`${styles.Button} ${styles.Active}`}>
 					{currentPage}
 				</button>
-				{Array.from({ length: pages }, (v, i) => currentPage + i + 1).map(
+				{Array.from({ length: extraPages }, (v, i) => currentPage + i + 1).map(
 					(page) => (
 						<button
 							key={page}

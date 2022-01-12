@@ -10,7 +10,9 @@
 
 .CardContent {
   padding: 28px 22px 22px 26px;
-
+  display: grid;
+  grid-template-rows: 16px 1fr;
+  gap: 7px;
 }
 
 .Card .Liked {
@@ -40,7 +42,6 @@
   letter-spacing: 0.25px;
   color: #6b6b6b;
   margin: 0;
-  margin-top: 7px;
 }
 
 .Anchor {
