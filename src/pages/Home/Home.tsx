@@ -8,29 +8,28 @@ import { Fav } from '../../context/fav/favsReducer'
 import useFetchNews from '../../hooks/useFetchNews'
 
 const Home = () => {
-	const { news: favorites, page, setPage } = useContext(FavContext)
+	const { favorites, page, setPage } = useContext(FavContext)
 	const [selected, setSelected] = useState('vue')
 	const { response, error, isLoading } = useFetchNews(selected, page)
-	const [news, setNews] = useState<Fav[]>([])
-	const [matchedNews, setMatchedNews] = useState<Fav[]>([])
+	const [news,  setNews] = useState<Fav[]>([])
 
-	const matchFavoritesWithNews = () => {
-		const matched = news.map((item) => {
-			const fav = favorites[item.id || '']
-			console.log({ item, fav })
-			return {
-				...item,
-				isLiked: fav?.isLiked || false,
-			}
-		})
-		console.log(matched)
-		setMatchedNews(matched)
-	}
 	useEffect(() => {
 		if (response) {
-			matchFavoritesWithNews()
+			matchFavoritesWithNews(news)
 		}
-	}, [news])
+	}, [favorites])
+
+
+	const matchFavoritesWithNews = (news: Fav[]) => {
+		const matched = news.map(item => {
+			const isLiked = favorites.find(fav => fav.id === item.id)
+			if (isLiked) {
+				item.isLiked = true
+			}
+			return item
+		})
+		setNews(matched)
+	}
 
 	useEffect(() => {
 		if (response) {
@@ -42,6 +41,7 @@ const Home = () => {
 				id: item.objectID,
 				url: item.story_url,
 			}))
+			matchFavoritesWithNews(theNews)
 			setNews(theNews)
 		}
 	}, [response])
@@ -53,7 +53,7 @@ const Home = () => {
 				{isLoading && <div>Loading...</div>}
 				{error && <div>Error</div>}
 				{response && !isLoading && (
-					<CardContainer favs={matchedNews||news} setFavs={setNews} />
+					<CardContainer favs={news} />
 				)}
 			</div>
 
