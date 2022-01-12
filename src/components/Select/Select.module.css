@@ -1,6 +1,13 @@
 .Select {
   width: 240px;
   position: relative;
+  margin: 0 auto;
+}
+
+@media (min-width: 460px) {
+  .Select {
+    margin: 0;
+  }
 }
 
 .down {

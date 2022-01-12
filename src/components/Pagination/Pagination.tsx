@@ -11,7 +11,7 @@ const Pagination = ({
 	page
 }: PaginationI) => {
 	const [currentPage, setCurrentPage] = useState(page)
-	const [extraPages] = useState(6)
+	const [extraPages] = useState(3)
 
 	const handlePage = (n: number) => {
 		setCurrentPage((cp) => cp + n)

@@ -1,7 +1,18 @@
 .CardContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   column-gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   row-gap: 30px;
   margin-top: 37px;
+}
+
+@media (min-width: 460px) {
+  .CardContainer {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+@media (min-width: 948px) {
+  .CardContainer {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  }
 }
