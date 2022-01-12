@@ -21,7 +21,7 @@ const theItems: ItemI[] = [
 ]
 
 const Select = ({onSelect}: Props) => {
-	const [items, setItems] = useState(theItems)
+	const [items, setItems] = useState<ItemI[]>([])
 	const [search, setSearch] = useState('')
 	const [isActiveItems, setIsActiveItems] = useState(false)
 	const [placeholder, setPlaceholder] = useState('Select your news')

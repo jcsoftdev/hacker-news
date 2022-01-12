@@ -2,26 +2,34 @@ import styles from './Card.module.css'
 import timeIcon from '../../assets/time.svg'
 import heartIcon from '../../assets/heart.svg'
 import heartlikedIcon from '../../assets/heart-liked.svg'
+import { Fav } from '../../context/fav/favsReducer'
+import getTimeAgo from '../../utils/FormatDate'
 
-interface CardI {
-  title: string
-  author: string
-  timeAgo: string
-  isLiked: boolean
+interface CardI extends Fav {
+  onClick?: () => void
+  onHeartClick?: () => void
 }
 
-const Card = ({timeAgo, author, title, isLiked}: CardI) => {
+const Card = ({ timeAgo, author, title, isLiked, onClick, onHeartClick }: CardI) => {
 	return (
-		<div className={styles.Card}>
+		<div className={styles.Card} onClick={onClick}>
 			<div className={styles.CardContent}>
 				<div className={styles.Time}>
 					<img src={timeIcon} alt="time" />
-					<span>{timeAgo} by {author}</span>
+					<span>
+						{getTimeAgo(new Date(timeAgo))} by {author}
+					</span>
 				</div>
 				<p className={styles.Title}>{title}</p>
 			</div>
-			<div className={styles.Liked}>
-				<span>{isLiked ? <img src={heartlikedIcon} alt="liked" /> : <img src={heartIcon} alt="not liked" />}</span>
+			<div className={styles.Liked} onClick={onHeartClick}>
+				<span>
+					{isLiked ? (
+						<img src={heartlikedIcon} alt="liked" />
+					) : (
+						<img src={heartIcon} alt="not liked" />
+					)}
+				</span>
 			</div>
 		</div>
 	)

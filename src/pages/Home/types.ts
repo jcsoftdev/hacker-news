@@ -12,7 +12,7 @@ export interface News {
 }
 
 export interface Hit {
-  created_at:       Date;
+  created_at:       string;
   title:            null;
   url:              null;
   author:           string;
