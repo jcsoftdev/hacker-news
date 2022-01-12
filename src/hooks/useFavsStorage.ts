@@ -15,13 +15,13 @@ const useFavsStorage = () => {
 		}}))
 	}
 
-	const getFavsArray = () => {
-		const favsArray = Object.values(favs)
-		setFavsArray(favsArray)
+	const getFavsLikedArray = () => {
+		const favsLikedArray = Object.values(favs).filter(fav => fav.isLiked)
+		setFavsArray(favsLikedArray)
 	}
 
 	useEffect(() => {
-		getFavsArray()
+		getFavsLikedArray()
 	},[favs])
 
 	return [favsArray, setFavsStorage] as const
