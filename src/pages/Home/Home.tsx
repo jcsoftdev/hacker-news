@@ -1,16 +1,36 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CardContainer from '../../components/CardContainer'
 import Pagination from '../../components/Pagination'
 import Select from '../../components/Select'
+import { FavContext } from '../../context/fav/FavsContext'
 import { Fav } from '../../context/fav/favsReducer'
 import useFetchNews from '../../hooks/useFetchNews'
 
 const Home = () => {
-	const [page, setPage] = useState(1)
+	const { news: favorites, page, setPage } = useContext(FavContext)
 	const [selected, setSelected] = useState('vue')
 	const { response, error, isLoading } = useFetchNews(selected, page)
 	const [news, setNews] = useState<Fav[]>([])
+	const [matchedNews, setMatchedNews] = useState<Fav[]>([])
+
+	const matchFavoritesWithNews = () => {
+		const matched = news.map((item) => {
+			const fav = favorites[item.id || '']
+			console.log({ item, fav })
+			return {
+				...item,
+				isLiked: fav?.isLiked || false,
+			}
+		})
+		console.log(matched)
+		setMatchedNews(matched)
+	}
+	useEffect(() => {
+		if (response) {
+			matchFavoritesWithNews()
+		}
+	}, [news])
 
 	useEffect(() => {
 		if (response) {
@@ -33,11 +53,11 @@ const Home = () => {
 				{isLoading && <div>Loading...</div>}
 				{error && <div>Error</div>}
 				{response && !isLoading && (
-					<CardContainer favs={news} setFavs={setNews} />
+					<CardContainer favs={matchedNews||news} setFavs={setNews} />
 				)}
 			</div>
 
-			<Pagination onChangePage={(e) => setPage(e)} />
+			<Pagination onChangePage={(e) => setPage(e)} page={page} />
 		</>
 	)
 }

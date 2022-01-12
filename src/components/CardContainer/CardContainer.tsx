@@ -6,7 +6,7 @@ import styles from './CardContainer.module.css'
 
 const CardContainer = ({ favs, setFavs }: { favs: Fav[], setFavs?: (fav: Fav[])=>void }) => {
 	const { setFav } = useContext(FavContext)
-
+	console.log(favs)
 	return (
 		<div className={styles.CardContainer}>
 			{favs.map((item) => (

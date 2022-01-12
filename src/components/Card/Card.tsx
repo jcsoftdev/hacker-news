@@ -1,19 +1,32 @@
+import { Fav } from '../../context/fav/favsReducer'
+import getTimeAgo from '../../utils/FormatDate'
 import styles from './Card.module.css'
 import timeIcon from '../../assets/time.svg'
 import heartIcon from '../../assets/heart.svg'
 import heartlikedIcon from '../../assets/heart-liked.svg'
-import { Fav } from '../../context/fav/favsReducer'
-import getTimeAgo from '../../utils/FormatDate'
 
 interface CardI extends Fav {
   onClick?: () => void
   onHeartClick?: () => void
 }
 
-const Card = ({ timeAgo, author, title, isLiked, onClick, onHeartClick, url }: CardI) => {
+const Card = ({
+	timeAgo,
+	author,
+	title,
+	isLiked,
+	onClick,
+	onHeartClick,
+	url,
+}: CardI) => {
 	return (
 		<div className={styles.Card} onClick={onClick}>
-			<a href={`${url}`} target={'_blank'} className={styles.Anchor} rel="noreferrer">
+			<a
+				href={`${url}`}
+				target={'_blank'}
+				className={styles.Anchor}
+				rel="noreferrer"
+			>
 				<div className={styles.CardContent}>
 					<div className={styles.Time}>
 						<img src={timeIcon} alt="time" />

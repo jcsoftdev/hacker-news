@@ -9,7 +9,7 @@ export interface Fav {
 	url : string
 }
 
-type FavAction = { type: 'SET_FAV'; payload: Fav }
+type FavAction = { type: 'SET_FAV'; payload: Fav }|{ type: 'SET_PAGE'; payload: number }
 
 export const favReducer = (state: NewState, action: FavAction) => {
 	switch (action.type) {
@@ -17,6 +17,11 @@ export const favReducer = (state: NewState, action: FavAction) => {
 		return {
 			...state,
 			news: {...state.news, [action.payload.id||0]: action.payload},
+		}
+	case 'SET_PAGE':
+		return {
+			...state,
+			page: action.payload,
 		}
 	default:
 		return state
