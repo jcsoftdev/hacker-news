@@ -1,7 +1,8 @@
 .Pagination {
   display: flex;
   justify-content: center;
-  margin-top: 96px;
+  margin-top: 46px;
+  margin-bottom: 50px;
   gap: 8px;
 }
 
