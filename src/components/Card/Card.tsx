@@ -10,18 +10,20 @@ interface CardI extends Fav {
   onHeartClick?: () => void
 }
 
-const Card = ({ timeAgo, author, title, isLiked, onClick, onHeartClick }: CardI) => {
+const Card = ({ timeAgo, author, title, isLiked, onClick, onHeartClick, url }: CardI) => {
 	return (
 		<div className={styles.Card} onClick={onClick}>
-			<div className={styles.CardContent}>
-				<div className={styles.Time}>
-					<img src={timeIcon} alt="time" />
-					<span>
-						{getTimeAgo(new Date(timeAgo))} by {author}
-					</span>
+			<a href={`${url}`} target={'_blank'} className={styles.Anchor} rel="noreferrer">
+				<div className={styles.CardContent}>
+					<div className={styles.Time}>
+						<img src={timeIcon} alt="time" />
+						<span>
+							{getTimeAgo(new Date(timeAgo))} by {author}
+						</span>
+					</div>
+					<p className={styles.Title}>{title}</p>
 				</div>
-				<p className={styles.Title}>{title}</p>
-			</div>
+			</a>
 			<div className={styles.Liked} onClick={onHeartClick}>
 				<span>
 					{isLiked ? (

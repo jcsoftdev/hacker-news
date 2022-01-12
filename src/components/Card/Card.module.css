@@ -5,6 +5,7 @@
   opacity: 0.8;
   border-radius: 6px;
   overflow: hidden;
+  height: 100%;
 }
 
 .CardContent {
@@ -17,6 +18,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Card .Liked span {
+  cursor: pointer;
 }
 
 .Time {
@@ -36,4 +41,9 @@
   color: #6b6b6b;
   margin: 0;
   margin-top: 7px;
+}
+
+.Anchor {
+  text-decoration: none;
+  display: block;
 }
